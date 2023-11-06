@@ -1,4 +1,5 @@
 # Ex-No-4-Creating-Procedures-using-PL-SQL
+## DATE: 24/08/2023
 ## AIM:
 To create a procedure using PL/SQL.
 ## STEPS:
@@ -9,30 +10,35 @@ To create a procedure using PL/SQL.
 5. Call the insert_employee data procedure to insert the values into the employee table.
 6. Display the employee table
 ## PROGRAM:
-```
-create database emp;
-use emp;
-drop table employee;
-create table employee (empid numeric(10),empname char(10),dept char(15),salary numeric(60));
-delimiter //
-CREATE PROCEDURE insert_employee_data()
-begin
-INSERT INTO employee (empid,empname,dept,salary)
-VALUES (1,'John','HR',50000);
-INSERT INTO employee (empid,empname,dept,salary)
-VALUES (2,'Bob','IT',55000);
-INSERT INTO employee (empid,empname,dept,salary)
-VALUES (3,'joe','Fin',60000);
-COMMIT;
-
-END;
-//
-call insert_employee_data();
-select *from employee;
+```SQL
+SQL> CREATE TABLE es(
+     empid NUMBER,
+     empname VARCHAR(10),
+     dept VARCHAR(10),
+     salary NUMBER
+    );
+CREATE OR REPLACE PROCEDURE emp_data AS
+    BEGIN
+    INSERT INTO es(empid,empname,dept,salary)
+    values(1,'NAGUL','AIDS',100000);
+    INSERT INTO es(empid,empname,dept,salary)
+    values(2,'VINOD','AIML',100000);
+    INSERT INTO es(empid,empname,dept,salary)
+    values(3,'ARVIND','AIML',100000);
+    COMMIT;
+   FOR emp_rec IN (SELECT * FROM es)LOOP
+   DBMS_OUTPUT.PUT_LINE('EMPLOYEE ID:'||emp_rec.empid||',EMPLOYEE NAME:'|| emp_rec.empname||
+   ',DEPARTMENT:'||emp_rec.dept||',SALARY:'||emp_rec.salary);
+   END LOOP;
+   END;
+  /
 ```
 
 ## OUTPUT:
-![image](https://github.com/AdhithyaMR/Ex-No-4-Creating-Procedures-using-PL-SQL/assets/118834761/78840a50-22dc-4dc4-9c05-6a3f4b0e124c)
+![270942742-d7c0a2aa-eb7a-4abe-84d1-70f8fb28f01e](https://github.com/AdhithyaMR/Ex-No-4-Creating-Procedures-using-PL-SQL/assets/118834761/0d182b4f-e8a4-4161-8fc1-b09e11ce5e82)
+
+
+
 
 ## RESULT:
 The commands using procedure using PL/SQL has been executed sucessfully.
